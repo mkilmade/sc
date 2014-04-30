@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for UNIX (Apple Mac OS X for x86-64) 2011.1.2 (Build 701)" ts="2014-04-30 10:41:05">
-<Routine name="MKTEST" type="INT" languagemode="0" timestamp="63307,38456.028966"><![CDATA[
+<Export generator="Cache" version="25" zv="Cache for UNIX (Apple Mac OS X for x86-64) 2011.1.2 (Build 701)" ts="2014-04-30 10:53:31">
+<Routine name="MKTEST" type="INT" languagemode="0" timestamp="63307,39198.945753"><![CDATA[
 MKTEST ; 04/03/2014 16:04:56
  ;;5.2;AUTOMATED LAB INSTRUMENTS;**75**;Sep 27, 1994;Build 99
  ; Hi Mike! Testing! Again! onBeforeSave 3
 EN ;
- W !,"hello Mike from sc (real push test #5)"   
+ W !,"hello Mike from sc (real push test #8)"   
  q 
  ;
 ]]></Routine>
