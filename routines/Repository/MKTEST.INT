@@ -1,0 +1,7 @@
+MKTEST ; 04/03/2014 16:04:56
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**75**;Sep 27, 1994;Build 99
+ ; Hi Mike! Testing! Again! onBeforeSave 3
+EN ;
+ W !,"hello Mike from sc (real push test #19)"   
+ q 
+ ;
