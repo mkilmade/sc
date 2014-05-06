@@ -1,0 +1,8 @@
+MKPOST ;MJK/SLC - MJK Test Post-Init ; 04/03/2014 16:04:56
+ ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 203fgfggf
+ ;
+ Q
+POST(buildName,DUZ) ; -- test import
+ s x="##class(lsrp.sc.SourceControl).KidsImport("""_buildName_""","_DUZ_")"
+ do @x
+ q
