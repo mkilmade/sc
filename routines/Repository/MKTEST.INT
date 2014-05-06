@@ -1,14 +1,12 @@
-MKTEST ;MJK/SLC - MJK Tester ; 04/03/2014 16:04:56
- ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 203\
- ;
- Q
- ;
+MKTEST ; 04/03/2014 16:04:56 ; 06 May 2014  11:09 AM
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**752**;Sep 27, 1994;Build 9ddd
+ ; Hi Mike! Testing! Again! onBeforeSave 3
 EN ;
  W !,"hello Mike for sc push test"   
  q 
  ;
 TEST ; testing tag for KID post init
- d KID("VPR*1.0*3",$G(DUZ,10000000297))
+ d KID("MK*1.0*11",123)
  q
  ;
 KID(buildName,DUZ) ; -- test import
