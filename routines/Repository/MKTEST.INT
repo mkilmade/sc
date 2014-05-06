@@ -1,5 +1,5 @@
-MKTEST ; 04/03/2014 16:04:56
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**75**;Sep 27, 1994;Build 99
+MKTEST ; 04/03/2014 16:04:56 ; 06 May 2014  11:09 AM
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**752**;Sep 27, 1994;Build 99
  ; Hi Mike! Testing! Again! onBeforeSave 3
 EN ;
  W !,"hello Mike for sc push test"   
