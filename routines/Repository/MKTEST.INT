@@ -2,6 +2,14 @@ MKTEST ; 04/03/2014 16:04:56
  ;;5.2;AUTOMATED LAB INSTRUMENTS;**75**;Sep 27, 1994;Build 99
  ; Hi Mike! Testing! Again! onBeforeSave 3
 EN ;
- W !,"hello Mike from sc (real push test #19)"   
+ W !,"hello Mike for sc push test"   
  q 
  ;
+TEST ; testing tag for KID post init
+ d KID("MK*1.0*11",123)
+ q
+ ;
+KID(buildName,DUZ) ; -- test import
+ s x="##class(lsrp.sc.SourceControl).KidsImport("""_buildName_""","_DUZ_")"
+ do @x
+ q
