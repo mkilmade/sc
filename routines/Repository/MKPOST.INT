@@ -1,5 +1,5 @@
 MKPOST ;MJK/SLC - MJK Test Post-Init ; 04/03/2014 16:04:56
- ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 203fgfggf
+ ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 203fgfggffff
  ;
  Q
 POST(buildName,DUZ) ; -- test import
