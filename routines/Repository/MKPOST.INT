@@ -1,8 +1,11 @@
 MKPOST ;MJK/SLC - MJK Test Post-Init ; 04/03/2014 16:04:56
- ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 203fgfggffff
+ ;;1.0;MJK TEST;**999**;Sep 01, 2011;Build 20
  ;
- Q
-POST(buildName,DUZ) ; -- test import
- s x="##class(lsrp.sc.SourceControl).KidsImport("""_buildName_""","_DUZ_")"
- do @x
+SC ; -- kids post-init API to import routines into source control
+ SET VPRBLD=$P($G(XPDNM)," ")
+ IF VPRBLD="" Q
+ SET VPRDUZ=$G(DUZ)
+ IF VPRDUZ="" Q
+ SET X="##class(lsrp.sc.SourceControl).KidsImport("""_VPRBLD_""","_VPRDUZ_")"
+ DO @X
  q
