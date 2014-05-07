@@ -1,17 +1,17 @@
 MKTEST ;MJK/SLC - MJK Tester ; 04/03/2014 16:04:56
- ;;1.0;MJK TEST;**1**;Sep 01, 2011;Build 20xcffffffff
+ ;;1.0;MJK TEST;**999**;Sep 01, 2011;Build 20
  ;
  Q
  ;
 EN ;
- W !,"hello Mike for sc push test"   
+ W !,"hello Mike for sc push test gggg"
  q 
  ;
 TEST ; testing tag for KID post init
- d KID("VPR*1.0*3",$G(DUZ,10000000297))
+ ;D KID("VPR*1.0*3",$G(DUZ,10000000297))
  q
  ;
-KID(buildName,DUZ) ; -- test import
- s x="##class(lsrp.sc.SourceControl).KidsImport("""_buildName_""","_DUZ_")"
- do @x
- q
+ ;KID(buildName,DUZ) ; -- test import
+ ;s x="##class(lsrp.sc.SourceControl).KidsImport("""_buildName_""","_DUZ_")"
+ ;do @x
+ ;Q
