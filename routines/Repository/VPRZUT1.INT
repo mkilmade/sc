@@ -1,0 +1,91 @@
+VPRZUT1 ;ALB/MJK -- Cache Studio Tools; 04/01/14
+ ;;
+ Q
+ ;
+ALL ; -- sync up all tracked builds at once
+ d VPR
+ d MD
+ d OR
+ Q
+ ;
+ ; --- update projects with latest KIDS build routine definition
+ ;
+VPR ; -- sync up project with current VPR build
+ n addons
+ s addons("VPRZUT1")=""
+ d Update("hmp_vpr_3","VPR*1.0*3",.addons)
+ q
+ ;
+MD ; -- sync up project for MD build
+ d Update("hmp_md_38","MD*1.0*38")
+ q
+ ;
+OR ; -- sync up project for MD build
+ d Update("hmp_or_390","OR*3.0*390")
+ q
+ ;
+Update(prjName,bldName,addons) ; -- update project with KIDS build routines
+ ; input: prjName := name of Cache Studio project
+ ;        bldName := name of BUILD (#9.6) file entry name
+ ;        addons  := list of routines besides those in build, you'd like in the project (* wildcard not supported)
+ ;
+ n rou,rouName,err,prj,bld,status,items,line,dt
+ s $p(line,"=",81)=""
+ k %objlasterror,%Project
+ w !,"Opening/Retrieving project & build...",!
+ s prj=##class(%Studio.Project).%OpenId(prjName)
+ i prj="" w !,"Project ",prjName," not found." q
+ w !,"Project",!?3,"o Name: ",prjName,!?3,"o Description: ",prj.Description
+ ;
+ s bld=$o(^XPD(9.6,"B",bldName,""))
+ i 'bld w !,"Build ",bldName," not found." q
+ s dt=$p($g(^XPD(9.6,bld,0)),"^",4)
+ w !!,"Build",!?3,"o Name: ",bldName,!?3,"o Date Distributed: ",$e(dt,4,5),"/",$e(dt,6,7),"/",$e(dt,2,3)
+ ;
+ ; -- build list of items in project (used for removal and maybe later to commpare new vs old list)
+ d BldList(prjName,.items)
+ ;
+ w !!,"Clearing items from project...",!
+ s rou="" f  s rou=$o(items(rou)) q:rou=""  d prj.RemoveItem(rou) w "-"
+ s status=prj.%Save()
+ ;
+ w !!,"Adding 'SEND TO SITE' routines from KIDS build to project...",!
+ s rou=0 f  s rou=$o(^XPD(9.6,bld,"KRN",9.8,"NM",rou)) q:'rou  i +$p($g(^(rou,0)),"^",3)=0 s rouName=$p($g(^(0)),"^") d
+ . i rouName="" q
+ . s rouName=rouName_".INT"
+ . s status=prj.AddItem(rouName)
+ . i status=1 w "+" q
+ . w !,"Error in Routine: ",rouName
+ . d DecomposeStatus^%apiOBJ(status,.err,"-d") f i=1:1:err w err(i),!
+ ;
+ i $d(addons) d
+ . w !,"Adding add-on routines...",!
+ . s rouName="" f  s rouName=$o(addons(rouName)) q:rouName=""  d
+ . . s rouName=rouName_".INT"
+ . . s status=prj.AddItem(rouName)
+ . . i status=1 w " o  ",rouName q
+ . . w !,"Error in Routine: ",rouName
+ . . d DecomposeStatus^%apiOBJ(status,.err,"-d") f i=1:1:err w err(i),!
+ ;
+ w !!,"Saving project"
+ s status=prj.%Save()
+ i status'=1 w !,"Save error..." D DecomposeStatus^%apiOBJ(status,.err,"-d") F i=1:1:err W err(i),!
+ ;
+ s status=prj.%Close()
+ i status'=1 w !,"Close error..." D DecomposeStatus^%apiOBJ(status,.err,"-d") F i=1:1:err W err(i),!
+ ;
+ w !,"Done",!,line
+ q
+ ; 
+BldList(prjName,items) ; -- get list of items/routines in project
+ n result,sc
+ S result=##class(%ResultSet).%New("%Studio.Project:ProjectItemsList")
+ S sc=result.Execute(prjName) I sc'=1 D DisplayError^%apiOBJ(sc) Q
+ while result.Next(.sc) {
+	I sc'=1 Q
+	s items(result.Data("Name"))=""
+ }
+ I sc'=1 D DisplayError^%apiOBJ(sc)
+ d result.Close()
+ q
+ ;
