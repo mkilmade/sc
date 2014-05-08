@@ -7,7 +7,7 @@ EN ;
  W !,"hello Mike for sc push test - check-in before build created"
  q 
  ;
-TEST ; testing tag for KID post inittttt
+TEST ; testing tag for KID post init
  ;D KID("VPR*1.0*3",$G(DUZ,10000000297))
  q
  ;
