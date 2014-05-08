@@ -1,11 +1,6 @@
 MKPOST ;MJK/SLC - MJK Test Post-Init ; 04/03/2014 16:04:56
- ;;1.0;MJK TEST;**999**;Sep 01, 2011;Build 20
+ ;;1.0;MJK TEST;**999**;Sep 01, 2011;Build 3
  ;
 SC ; -- kids post-init API to import routines into source control
- SET VPRBLD=$P($G(XPDNM)," ")
- IF VPRBLD="" Q
- SET VPRDUZ=$G(DUZ)
- IF VPRDUZ="" Q
- SET X="##class(lsrp.sc.SourceControl).KidsImport("""_VPRBLD_""","_VPRDUZ_")"
- DO @X
- q
+ DO @"##class(lsrp.sc.SourceControl).KidsImport()"
+ QUIT
