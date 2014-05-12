@@ -4,7 +4,7 @@ MKTEST ;MJK/SLC - MJK Tester ; 04/03/2014 16:04:56
  Q
  ;
 EN ;
- W !,"hello Mike for sc push test - check-in before build created"
+ W !,"hello Mike for sc push test - check-in before build created 4444"
  q 
  ;
 TEST ; testing tag for KID post init
