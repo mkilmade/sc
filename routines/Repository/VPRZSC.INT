@@ -2,6 +2,18 @@ VPRZSC ;MJK/SLC - VPR Source Control APIs ; 04/03/2014 16:04:56
  ;;1.0;VPR Source Control;**1**;May 12, 2014;
  Q
  ;
-XPDPOST() ; --KIDs post-init hook to perorm source control actions for a BUILD
- DO @"##class(lsrp.sc.SourceControl).KidsImport()"
+XPDPOST(BLDNAME,VPRDUZ) ; -- KIDs post-init hook to perorm source control actions for a BUILD
+ ; input: BLDNAME := name of BUILD (#9.6) entry - #.01 field value [optional - XPDNM is default]
+ ;         VPRDUZ := internal entry number of NEW PERSON (#200) file [optional - DUZ is default]
+ DO @"##class(lsrp.sc.SourceControl).KidsImport(.BLDNAME,.VPRDUZ)"
  QUIT
+ ;
+REMOVE(COMPNAME) ; -- remove component/routine from sourc control
+ ; input: COMPNAME := name of component/routine to remove
+ NEW SC,ERRORS
+ SET @"SC=##class(lsrp.sc.Component).RemoveComponent(.COMPNAME)"
+ IF 'SC DO @"$system.Status.DecomposeStatus(SC,.ERRORS,""d"")"
+ QUIT
+ ;
+REINIT() ; -- reinitialize source control objects (delete objects, not host files)
+ DO @"##class(lsrp.sc.SourceControlParameters).Reinitialize()"
