@@ -3,3 +3,29 @@ MKTEST10 ;MJK/SLC - MJK Tester ; 04/03/2014 16:04:56
  ;ssss
  Q
  ;
+send ; 
+	Set smtpServer="127.0.0.1" 
+	Set Mailer = ##class(%Net.SMTP).%New()
+	Set Mailer.smtpserver = smtpServer
+	set Mailer.timezone="-0400"
+	Set Msg = ##class(%Net.MailMessage).%New()
+	Set Msg.Subject = "VPR/DEV Innovations Test: "
+	Set Msg.From="Mike Kilmade"
+	Do Msg.To.Insert("mike.kilmade@va.gov")
+	Set crlf=$c(13,10)
+	Set x=""
+	Set x=x_"     Namespace: "_$system.SYS.NameSpace()_crlf
+	Set x=x_"       Routine: "__crlf
+	Set x=x_"          User: "_$USERNAME_crlf
+	Set x=x_"CO Description: "
+	Do Msg.TextData.Write(x)
+	// Send the message and close objects
+	Set status=Mailer.Send(Msg)
+	If 'status {
+		do $system.OBJ.DisplayError(status)
+	} else {
+		Write !,"Message(s) sent successfully to ",smtpServer,"!"
+	}
+	Set Mailer=""
+	Set Msg=""
+	q
