@@ -1,6 +1,6 @@
 MKTEST10 ;MJK/SLC - MJK Tester ; 04/03/2014 16:04:56
  ;;1.0;MJK TEST;**999**;Sep 01, 2011;Build 11
- ;fH
+ ;f
 send ; 
  Set smtpServer="127.0.0.1" 
  Set Mailer = ##class(%Net.SMTP).%New()
